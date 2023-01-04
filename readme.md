@@ -45,7 +45,7 @@ foo.bar.0 = 'Foo'
  * |.------------> 'prefix'
  * ||       .----> 'suffix' only if 'suffix-end' is true
  * ||       |.---> 'prefix-list'
- * ||       || .-> 'suffix-list' only if 'suffix-list-end' is true
+ * ||       || .-> only if 'suffix-list-end'/'suffix-end' is true
  * ||       || |
  * ${assokey}[0] => 'Foo'
  *

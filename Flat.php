@@ -45,9 +45,9 @@ if (!function_exists('array_is_list')) {
  *
  * .-------------> $start param
  * |.------------> 'prefix'
- * ||       .----> 'suffix' only if 'suffix-end' is true
+ * ||       .----> 'suffix'
  * ||       |.---> 'prefix-list'
- * ||       || .-> 'suffix-list' only if 'suffix-list-end' is true
+ * ||       || .->  only if 'suffix-list-end'/'suffix-end' is true
  * ||       || |
  * ${assokey}[0] => 'Foo'
  *
