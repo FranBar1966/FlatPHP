@@ -118,74 +118,77 @@ $sampleArray = [
 
 // Flatten
 flatten_array($sampleArray, $flattened);
-
-RESULT:
-(
-    [id] => 12345
-    [name] => A name
-    [properties.type] => A type
-    [properties.geo.latitude] => 12.3456
-    [properties.geo.longitude] => 12.3456
-    [properties.collections[0][0]] => 1
-    [properties.collections[0][1]] =>
-    [properties.collections[1][0]] => a
-    [properties.collections[1][1]] => b
-    [empty[0]] => Array()
-)
-
-// Flatten to JSON
-json_encode($flattened, JSON_PRETTY_PRINT);
-
-RESULT:
-{
-    "id": 12345,
-    "name": "A name",
-    "properties.type": "A type",
-    "properties.geo.latitude": 12.3456,
-    "properties.geo.longitude": 12.3456,
-    "properties.collections[0][0]": true,
-    "properties.collections[0][1]": false,
-    "properties.collections[1][0]": "a",
-    "properties.collections[1][1]": "b",
-    "empty[0]": []
-}
-
-// Unflatten previously flattened array
-unflatten_array($flattened, $unflattened);
-
-RESULT:
-(
-    [id] => 12345
-    [name] => A name
-    [properties] => Array
-        (
-            [type] => A type
-            [geo] => Array
-                (
-                    [latitude] => 12.3456
-                    [longitude] => 12.3456
-                )
-            [collections] => Array
-                (
-                    [0] => Array
-                        (
-                            [0] => 1
-                            [1] =>
-                        )
-                    [1] => Array
-                        (
-                            [0] => a
-                            [1] => b
-                        )
-                )
-        )
-    [empty] => Array
-        (
-            [0] => Array()
-        )
-)
-
 ```
+RESULT:
+
+    (
+        [id] => 12345
+        [name] => A name
+        [properties.type] => A type
+        [properties.geo.latitude] => 12.3456
+        [properties.geo.longitude] => 12.3456
+        [properties.collections[0][0]] => 1
+        [properties.collections[0][1]] =>
+        [properties.collections[1][0]] => a
+        [properties.collections[1][1]] => b
+        [empty[0]] => Array()
+    )
+
+Flatten to JSON
+```php
+json_encode($flattened, JSON_PRETTY_PRINT);
+```
+ Result:
+
+    {
+        "id": 12345,
+        "name": "A name",
+        "properties.type": "A type",
+        "properties.geo.latitude": 12.3456,
+        "properties.geo.longitude": 12.3456,
+        "properties.collections[0][0]": true,
+        "properties.collections[0][1]": false,
+        "properties.collections[1][0]": "a",
+        "properties.collections[1][1]": "b",
+        "empty[0]": []
+    }
+
+Unflatten previously flattened array
+```php
+unflatten_array($flattened, $unflattened);
+```
+RESULT:
+
+    (
+        [id] => 12345
+        [name] => A name
+        [properties] => Array
+            (
+                [type] => A type
+                [geo] => Array
+                    (
+                        [latitude] => 12.3456
+                        [longitude] => 12.3456
+                    )
+                [collections] => Array
+                    (
+                        [0] => Array
+                            (
+                                [0] => 1
+                                [1] =>
+                            )
+                        [1] => Array
+                            (
+                                [0] => a
+                                [1] => b
+                            )
+                    )
+            )
+        [empty] => Array
+            (
+                [0] => Array()
+            )
+    )
 
 ### Custom prefix and suffix
 ```php
@@ -200,22 +203,22 @@ $options = [
 
 // Flatten
 flatten_array($sampleArray, $flattened, $options);
+```
 
 RESULT:
-(
-    [{id}] => 12345
-    [{name}] => A name
-    [{properties}{type}] => A type
-    [{properties}{geo}{latitude}] => 12.3456
-    [{properties}{geo}{longitude}] => 12.3456
-    [{properties}{collections}[0][0]] => 1
-    [{properties}{collections}[0][1]] =>
-    [{properties}{collections}[1][0]] => a
-    [{properties}{collections}[1][1]] => b
-    [{empty}[0]] => Array()
-)
 
-```
+    (
+        [{id}] => 12345
+        [{name}] => A name
+        [{properties}{type}] => A type
+        [{properties}{geo}{latitude}] => 12.3456
+        [{properties}{geo}{longitude}] => 12.3456
+        [{properties}{collections}[0][0]] => 1
+        [{properties}{collections}[0][1]] =>
+        [{properties}{collections}[1][0]] => a
+        [{properties}{collections}[1][1]] => b
+        [{empty}[0]] => Array()
+    )
 
 ### Custom suffix for all cases
 ```php
@@ -229,21 +232,21 @@ $options = [
 
 // Flatten
 flatten_array($sampleArray, $flattened, $options);
-
-RESULT:
-(
-    [id] => 12345
-    [name] => A name
-    [properties->type] => A type
-    [properties->geo->latitude] => 12.3456
-    [properties->geo->longitude] => 12.3456
-    [properties->collections->0->0] => 1
-    [properties->collections->0->1] =>
-    [properties->collections->1->0] => a
-    [properties->collections->1->1] => b
-    [empty->0] => Array()
-)
 ```
+RESULT:
+
+    (
+        [id] => 12345
+        [name] => A name
+        [properties->type] => A type
+        [properties->geo->latitude] => 12.3456
+        [properties->geo->longitude] => 12.3456
+        [properties->collections->0->0] => 1
+        [properties->collections->0->1] =>
+        [properties->collections->1->0] => a
+        [properties->collections->1->1] => b
+        [empty->0] => Array()
+    )
 
 ### Custom options and $start param
 ```php
@@ -258,21 +261,22 @@ $options = [
 
 // Flatten
 flatten_array($sampleArray, $flattened, $options, $start);
-
-RESULT:
-(
-    [https://example.com/id/] => 12345
-    [https://example.com/name/] => A name
-    [https://example.com/properties/type/] => A type
-    [https://example.com/properties/geo/latitude/] => 12.3456
-    [https://example.com/properties/geo/longitude/] => 12.3456
-    [https://example.com/properties/collections/0/0/] => 1
-    [https://example.com/properties/collections/0/1/] =>
-    [https://example.com/properties/collections/1/0/] => a
-    [https://example.com/properties/collections/1/1/] => b
-    [https://example.com/empty/0/] => Array()
-)
 ```
+RESULT:
+
+    (
+        [https://example.com/id/] => 12345
+        [https://example.com/name/] => A name
+        [https://example.com/properties/type/] => A type
+        [https://example.com/properties/geo/latitude/] => 12.3456
+        [https://example.com/properties/geo/longitude/] => 12.3456
+        [https://example.com/properties/collections/0/0/] => 1
+        [https://example.com/properties/collections/0/1/] =>
+        [https://example.com/properties/collections/1/0/] => a
+        [https://example.com/properties/collections/1/1/] => b
+        [https://example.com/empty/0/] => Array()
+    )
+
 ## Limitations
 
 The key names must not contain the symbols used as separators, doing so will cause problems and make it impossible to unflatten.
