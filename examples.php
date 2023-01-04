@@ -2,7 +2,7 @@
 
 /**
  * Flat.php examples
- * https://thenocoder.github.io/FlatPHP/
+ * https://github.com/TheNocoder/FlatPHP
  * Copyright (c) 2023
  * https://github.com/TheNocoder/FlatPHP/LICENSE
  */

@@ -1,4 +1,4 @@
-Flatten / unflatten PHP arrays (or JSON)
+[Flatten / unflatten PHP arrays (or JSON)](https://github.com/TheNocoder/FlatPHP)
 ========================================
 
 Utility functions to flatten multidimensional arrays into a one-dimensional array, preserving key names and joining them with customizable separators.
