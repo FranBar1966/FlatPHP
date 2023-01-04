@@ -119,12 +119,40 @@ function unflatten_array($source, &$destination, $opt = [], $start = '')
     $opt['suffix-list']     ??= ']';
     $opt['suffix-list-end'] ??= true;  // This option is IGNORED for unflatten.
 
+    /*
+     * Determine a single separator
+     */
     $splitter = $opt['suffix'] ?: $opt['prefix'] ?: $opt['prefix-list'] ?: $opt['suffix-list'];
-    $pattern  = '[\\' . ($opt['suffix'] ?: $splitter) . '\\' . ($opt['prefix'] ?: $splitter) . '\\' . ($opt['prefix-list'] ?: $splitter) . '\\' . ($opt['suffix-list'] ?: $splitter) . ']+';
+
+    /*
+     * Used suffixes and prefixes will be replaced by single $splitter
+     *
+     * Simplify a complex string like:
+     *
+     *      {properties}{collections}[0][0]
+     *
+     * To a simpler one than it is possible to do a simple split:
+     *
+     *      properties}collections}0}0
+     *
+     * Later: str_replace($search, $splitter, $key) and explode($splitter, $key)
+     */
+    $tokens = [
+        '' => 1, // force it to exist
+        $opt['prefix'] => 1,
+        $opt['suffix'] => 1,
+        $opt['suffix'].$opt['prefix'] => 1,
+        $opt['prefix-list'] => 1,
+        $opt['suffix-list'] => 1,
+        $opt['suffix-list'].$opt['prefix-list'] => 1,
+        $splitter.$splitter => 1,
+    ];
+    unset($tokens['']);
+    $search = array_keys($tokens);
 
     foreach ($source as $key => $val) {
         $key = ltrim($key, $start);
-        $key = preg_replace("/$pattern/", $splitter, $key);
+        $key = str_replace($search, $splitter, $key);
         $key = trim($key, $splitter);
         $sub = explode($splitter, $key);
         $ref = &$destination;
