@@ -43,7 +43,7 @@ foo.bar.0 = 'Foo'
  *
  * .-------------> $start param
  * |.------------> 'prefix'
- * ||       .----> 'suffix' only if 'suffix-end' is true
+ * ||       .----> 'suffix'
  * ||       |.---> 'prefix-list'
  * ||       || .-> only if 'suffix-list-end'/'suffix-end' is true
  * ||       || |
