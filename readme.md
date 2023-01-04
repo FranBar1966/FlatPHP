@@ -119,7 +119,7 @@ $sampleArray = [
 // Flatten
 flatten_array($sampleArray, $flattened);
 ```
-RESULT:
+Result:
 
     (
         [id] => 12345
@@ -157,7 +157,7 @@ Unflatten previously flattened array
 ```php
 unflatten_array($flattened, $unflattened);
 ```
-RESULT:
+Result:
 
     (
         [id] => 12345
@@ -205,7 +205,7 @@ $options = [
 flatten_array($sampleArray, $flattened, $options);
 ```
 
-RESULT:
+Result:
 
     (
         [{id}] => 12345
@@ -233,7 +233,7 @@ $options = [
 // Flatten
 flatten_array($sampleArray, $flattened, $options);
 ```
-RESULT:
+Result:
 
     (
         [id] => 12345
@@ -262,7 +262,7 @@ $options = [
 // Flatten
 flatten_array($sampleArray, $flattened, $options, $start);
 ```
-RESULT:
+Result:
 
     (
         [https://example.com/id/] => 12345
